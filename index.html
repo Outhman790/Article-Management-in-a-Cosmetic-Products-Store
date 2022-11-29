@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <section id="Product_form"> 
+      <form class="container" >
+        <div id="feedback_msg" class="grid_8"></div>
+        <div id="nom_div" class="grid_8">
+          <label for="nom_input" id="nom_label">Nom:</label>
+          <input type="text" name="nom" id="nom_input" maxlength="30" />
+          <small></small>
+        </div>
+        <div id="marque_div" class="grid_8">
+          <label for="marque_input" id="marque_label">Marque:</label>
+          <input type="text" name="marque" id="marque_input" maxlength="30" />
+          <small></small>
+        </div>
+        <div id="prix_div" class="grid_8">
+          <label for="prix_input" id="prix_label">Prix:</label>
+          <input type="number" name="prix" id="prix_input" />
+          <small></small>
+        </div>
+        <div id="dateprd_div" class="grid_8">
+          <label for="dateprd_input" id="dateprd_label"
+          >Date de production:</label
+          >
+        <input type="date" name="dateprd" id="dateprd_input" />
+        <small></small>
+      </div>
+      <div id="type_div" class="grid_8">
+        <label for="type_input" id="type_label">type:</label>
+        <select id="select">
+          <option>Please select the Product type</option>
+          <option value="hygiène et toilette" class="type">
+            hygiène et toilette
+          </option>
+          <option value="soins esthétiques" class="type">
+            soins esthétiques
+          </option>
+          <option value="produits solaires" class="type">
+            produits solaires
+          </option>
+          <option value="beauté des mains et des pieds" class="type">
+            beauté des mains et des pieds
+          </option>
+          <option value="produits de maquillage" class="type">
+            produits de maquillage
+          </option>
+          <option value="entretien capillaires" class="type">
+            entretien capillaires
+          </option>
+          <option value="parfums" class="type">parfums</option>
+        </select>
+        <small></small>
+      </div>
+      <div id="promotion_div" class="grid_8">
+        <p>promotion:</p>
+        <input
+        type="radio"
+        name="promotion"
+        id="promotion_input_oui"
+        value="Oui"
+        />
+        <label for="promotion_input_oui">Oui</label>
+        <input
+        type="radio"
+        name="promotion"
+        id="promotion_input_non"
+        value="Non"
+        />
+        <label for="promotion_input_non">Non</label>
+        <small></small>
+      </div>
+      <input type="submit" value="Submit" id="submit_btn" class="grid_8" />
+    </form>
+    <div class="container">
+      <table class="grid_10">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Marque</th>
+            <th>Prix</th>
+            <th>Date de production</th>
+            <th>type</th>
+            <th>promotion</th>
+            <th colspan="2">add/delete</th>
+          </tr>
+        </thead>
+        <tbody class="table_Body"></tbody>
+      </table>
+    </div>
+  </section>
+    <section id="modal" >
+      <div id="id01" class="modal" class="grid_8">
+        <span onclick="HideModal()" class="close" title="Close Modal">×</span>
+        <form class="modal-content" action="/action_page.php">
+          <div class="container"></div>
+          <p style="text-align: center;">Are you sure you want to delete your account?</p>
+          <div class="clearfix">
+                <button type="button" onclick="Cancel()" class="cancelbtn">Cancel</button>
+                <button type="button" id="delete_Pro" class="deletebtn">Delete</button>
+              </div>
+            </form>
+          </div>
+        </div>
+  </section>
+  </body>
+</html>
