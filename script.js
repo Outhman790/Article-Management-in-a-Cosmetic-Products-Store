@@ -8,101 +8,26 @@ const typeInput = document.querySelector("#select");
 const promotionInputYes = document.querySelector("#promotion_input_oui");
 const promotionInputNo = document.querySelector("#promotion_input_non");
 const tableBody = document.querySelector(".table_Body");
+const modal = document.getElementById("modal");
+const formSection = document.getElementById("form_section");
 // const tableData = document.querySelector(".magazin_list");
 const submitBtn = document.querySelector("#submit_btn");
 const deleteBtn = document.querySelector(".delete_btn");
 const feedbackMsg = document.querySelector("#feedback_msg");
-const nameRegex = /^(^[a-z{2-}]+[\'\-\s]?[a-z]+)$/gi;
-const markRegex = /^(^[a-z{2-}]+[\'\-\s]?[a-z]+)$/gi;
+const nameRegex = /^([a-z{2-}]+[\'\-\s]?[a-z]+)$/gi;
+const markRegex = /^([a-z{2-}]+[\'\-\s]?[a-z]+)$/gi;
 const priceRegex = new RegExp("[0-9]", "g");
-const typeRegex = /^(^[a-z{2-}]+[\'\-\s]?[a-z]+)$/gi;
 const validate = (input, regex) => regex.test(input.value.toLowerCase());
 let current = "create";
 let temp;
+// hiding the modal
+modal.style.display = "none";
 //
 let dataArr = [];
 if (localStorage.product != null) {
   dataArr = JSON.parse(localStorage.product);
 }
 
-// show error
-const printError = (input, message) => {
-  const inputName = input.name;
-  const inputDiv = input.closest(`#${inputName}_div`);
-  const small = inputDiv.querySelector("small");
-  inputDiv.className = `grid_8 ${inputName}_div error`;
-  small.innerText = message;
-  small.style.color = "red";
-};
-// no error
-const printSuccess = (input) => {
-  const inputName = input.name;
-  const inputDiv = input.closest(`#${inputName}_div`);
-  const small = inputDiv.querySelector("small");
-  inputDiv.className = `grid_8 ${inputName}_div success`;
-};
-// validating name
-const checkName = (name) => {
-  if (name.value.trim() === "") {
-    printError(name, "Please enter a name");
-    return false;
-  } else if (validate(name, nameRegex)) {
-    printSuccess(name);
-    return true;
-  } else if (!validate(name, nameRegex)) {
-    printError(name, "Please enter a valid name");
-    return false;
-  }
-};
-// validating marque
-const checkMark = (mark) => {
-  if (mark.value.trim() === "") {
-    printError(mark, "Please enter a mark");
-    return false;
-  } else if (validate(mark, markRegex)) {
-    printSuccess(mark);
-    return true;
-  } else if (!validate(mark, markRegex)) {
-    printError(mark, "Please enter a valid mark");
-    return false;
-  }
-};
-// validating price
-const checkPrice = (price) => {
-  if (price.value.trim() === "") {
-    printError(price, "Please enter a price");
-    return false;
-  } else if (validate(price, priceRegex)) {
-    printSuccess(price);
-    return true;
-  } else if (!validate(price, priceRegex)) {
-    printError(price, "Please enter a valid price");
-    return false;
-  }
-};
-// validating type
-// const checkType = () => {
-//   if (typeInput.length === 0) {
-//     document.getElementById("select").innerHTML = "Please enter a type";
-//     return false;
-//   } else {
-//     document.getElementById("select").innerHTML = "";
-//     dataArr.push(true);
-//     return true;
-//   }
-// };
-// validating promotion
-const promotionNoValue = () => {
-  if (!promotionInputYes.checked && !promotionInputNo.checked) return true;
-  else return false;
-};
-// clear all inputs
-const clearInputs = () => {
-  nameInput.value = "";
-  marqueInput.value = "";
-  priceInput.value = "";
-  typeInput.value = "";
-};
 // events ( will be improved after finishing )
 nameInput.addEventListener("blur", (e) => {
   checkName(e.target);
@@ -123,15 +48,6 @@ window.addEventListener("click", (e) => {
     showData();
   }
 });
-// checking all inputs at once
-const checkInputs = () => {
-  checkName(nameInput);
-  checkMark(marqueInput);
-  checkPrice(priceInput);
-  checkType(typeInput);
-  if (promotionNoValue()) printSuccess(promotionInputYes);
-  else printError(promotionInputYes, "please select one");
-};
 // adding data function
 const showData = () => {
   let table = "";
@@ -153,15 +69,15 @@ const showData = () => {
   }
   tableBody.innerHTML = table;
 };
-// delete data function
-function deletedData(i) {
-  document.getElementById("Product_form").style.display = "none";
-  document.getElementById("modal").style.display = "block";
+//
+const deletedData = (i) => {
+  formSection.style.display = "none";
+  modal.style.display = "flex";
   delete_Pro.setAttribute("onclick", `deleteData(${i})`);
-}
+};
 const deleteData = (i) => {
-  document.getElementById("Product_form").style.display = "block";
-  document.getElementById("modal").style.display = "none";
+  formSection.style.display = "grid";
+  modal.style.display = "none";
   dataArr.splice(i, 1);
   localStorage.product = JSON.stringify(dataArr);
   showData();
@@ -227,6 +143,7 @@ submitBtn.addEventListener("click", (e) => {
       dataArr[temp].type = typeInput.value;
       localStorage.setItem("product", JSON.stringify(dataArr));
       showData();
+      clearInputs();
       feedbackMsg.innerHTML = "";
       feedbackMsg.style.display = "none";
     }
