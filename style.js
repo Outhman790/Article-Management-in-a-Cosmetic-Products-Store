@@ -1,18 +1,20 @@
 "use strict";
 // show error
 const printError = (input, message) => {
+  console.log("called (error)");
   const inputName = input.name;
   const inputDiv = input.closest(`#${inputName}_div`);
   const small = inputDiv.querySelector("small");
-  inputDiv.className = `grid_8 ${inputName}_div error`;
+  inputDiv.className = `${inputName}_div error`;
   small.innerText = message;
-  small.style.color = "red";
+  // small.style.color = "red";
 };
 // no error
 const printSuccess = (input) => {
+  console.log("called (success)");
   const inputName = input.name;
   const inputDiv = input.closest(`#${inputName}_div`);
-  inputDiv.className = `grid_8 ${inputName}_div success`;
+  inputDiv.className = `${inputName}_div success`;
 };
 
 // clear all inputs
