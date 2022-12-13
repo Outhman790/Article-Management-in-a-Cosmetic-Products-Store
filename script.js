@@ -1,9 +1,9 @@
 "use strict";
-var selectedRow = null;
 const nameInput = document.querySelector("#nom_input");
 const marqueInput = document.querySelector("#marque_input");
 const priceInput = document.querySelector("#prix_input");
 const datePrdInput = document.querySelector("#dateprd_input");
+const datePrdDiv = document.querySelector("#dateprd_div");
 const typeInput = document.querySelector("#select");
 const promotionInputYes = document.querySelector("#promotion_input_oui");
 const promotionInputNo = document.querySelector("#promotion_input_non");
@@ -14,34 +14,22 @@ const formSection = document.getElementById("form_section");
 const submitBtn = document.querySelector("#submit_btn");
 const deleteBtn = document.querySelector(".delete_btn");
 const feedbackMsg = document.querySelector("#feedback_msg");
+const divs = document.querySelectorAll("form div");
 const nameRegex = /^([a-z{2-}]+[\'\-\s]?[a-z]+)$/gi;
 const markRegex = /^([a-z{2-}]+[\'\-\s]?[a-z]+)$/gi;
 const priceRegex = new RegExp("[0-9]", "g");
 const validate = (input, regex) => regex.test(input.value.toLowerCase());
 let current = "create";
 let temp;
-// hiding the modal
+// hidding the modal
 modal.style.display = "none";
 //
 let dataArr = [];
 if (localStorage.product != null) {
   dataArr = JSON.parse(localStorage.product);
 }
-
-// events ( will be improved after finishing )
-nameInput.addEventListener("blur", (e) => {
-  checkName(e.target);
-});
-marqueInput.addEventListener("blur", (e) => {
-  checkMark(e.target);
-});
-priceInput.addEventListener("blur", (e) => {
-  checkPrice(e.target);
-});
-// typeInput.addEventListener("blur", (e) => {
-//   console.log(checkType(e.target));
-//   checkType(e.target);
-// });
+// EVENTS
+checkingEvents();
 // refreshing data when clicking delete
 window.addEventListener("click", (e) => {
   if (e.target.classList.contains("delete_btn")) {
@@ -112,11 +100,13 @@ submitBtn.addEventListener("click", (e) => {
       checkName(nameInput) == false ||
       checkMark(marqueInput) == false ||
       checkPrice(priceInput) == false ||
-      promotionNoValue() == true
-      // checkType() == false
+      promotionNoValue() == true ||
+      checkType(typeInput) == false ||
+      checkDate(datePrdInput) == false
     ) {
       feedbackMsg.style.display = "block";
       feedbackMsg.innerHTML = "an error ocurred";
+      checkInputs();
     } else {
       dataArr.push(data);
       localStorage.setItem("product", JSON.stringify(dataArr));
@@ -124,17 +114,21 @@ submitBtn.addEventListener("click", (e) => {
       feedbackMsg.style.display = "none";
       showData();
       clearInputs();
+      clearChecking(divs);
+      // checkingEvents();
     }
   } else {
     if (
       checkName(nameInput) == false ||
       checkMark(marqueInput) == false ||
       checkPrice(priceInput) == false ||
-      promotionNoValue() == true
-      // checkType() == false
+      promotionNoValue() == true ||
+      checkType(typeInput) == false ||
+      checkDate(datePrdInput) == false
     ) {
       feedbackMsg.style.display = "block";
       feedbackMsg.innerHTML = "an error ocurred";
+      checkInputs();
     } else {
       dataArr[temp].name = nameInput.value;
       dataArr[temp].marque = marqueInput.value;
@@ -144,6 +138,8 @@ submitBtn.addEventListener("click", (e) => {
       localStorage.setItem("product", JSON.stringify(dataArr));
       showData();
       clearInputs();
+      clearChecking(divs);
+      // checkingEvents();
       feedbackMsg.innerHTML = "";
       feedbackMsg.style.display = "none";
     }
