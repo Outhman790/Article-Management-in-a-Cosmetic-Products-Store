@@ -6,40 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="style.css" />
-    <script defer src="script.js"></script>
     <script defer src="validation.js"></script>
     <script defer src="style.js"></script>
+    <script defer src="script.js"></script>
   </head>
   <body>
     <section id="form_section" class="container">
       <form class="grid_8">
-        <div id="feedback_msg" class="grid_8"></div>
-        <div id="nom_div" class="grid_8">
+        <div id="nom_div" data-name="nom">
           <label for="nom_input" id="nom_label">Nom:</label>
           <input type="text" name="nom" id="nom_input" maxlength="30" />
           <small></small>
         </div>
-        <div id="marque_div" class="grid_8">
+        <div id="marque_div" data-name="marque">
           <label for="marque_input" id="marque_label">Marque:</label>
           <input type="text" name="marque" id="marque_input" maxlength="30" />
           <small></small>
         </div>
-        <div id="prix_div" class="grid_8">
+        <div id="prix_div" data-name="prix">
           <label for="prix_input" id="prix_label">Prix:</label>
           <input type="number" name="prix" id="prix_input" />
           <small></small>
         </div>
-        <div id="dateprd_div" class="grid_8">
+        <div id="dateprd_div" data-name="dateprd">
           <label for="dateprd_input" id="dateprd_label"
             >Date de production:</label
           >
           <input type="date" name="dateprd" id="dateprd_input" />
           <small></small>
         </div>
-        <div id="type_div" class="grid_8">
+        <div id="type_div" data-name="type">
           <label for="type_input" id="type_label">type:</label>
           <select id="select">
-            <option>Please select the Product type</option>
+            <option value="">Please select the Product type</option>
             <option value="hygiène et toilette" class="type">
               hygiène et toilette
             </option>
@@ -62,7 +61,7 @@
           </select>
           <small></small>
         </div>
-        <div id="promotion_div" class="grid_8">
+        <div id="promotion_div" data-name="promotion">
           <p>promotion:</p>
           <input
             type="radio"
@@ -80,6 +79,7 @@
           <label for="promotion_input_non">Non</label>
           <small></small>
         </div>
+        <div id="feedback_msg" class="bar erroor"></div>
         <input type="submit" value="Submit" id="submit_btn" class="grid_8" />
       </form>
       <div class="grid_10">
