@@ -1,4 +1,5 @@
 "use strict";
+const typeDiv = document.querySelector("#type_div");
 // validating name
 const checkName = (name) => {
   if (name.value.trim() === "") {
@@ -38,28 +39,72 @@ const checkPrice = (price) => {
     return false;
   }
 };
+// validating date
+const checkDate = (date) => {
+  if (!(date.value === "")) {
+    printSuccess(date);
+    return true;
+  } else {
+    printError(date, "Please enter a date");
+    return false;
+  }
+};
 // validating type
-// const checkType = () => {
-//   if (typeInput.length === 0) {
-//     document.getElementById("select").innerHTML = "Please enter a type";
-//     return false;
-//   } else {
-//     document.getElementById("select").innerHTML = "";
-//     dataArr.push(true);
-//     return true;
-//   }
-// };
+const checkType = (selectInput) => {
+  if (selectInput.value === "") {
+    typeDiv.querySelector("small").textContent = "Please select a type";
+    typeDiv.querySelector("small").style.color = "red";
+    typeDiv.querySelector("small").style.visibility = "visible";
+    return false;
+  } else {
+    typeDiv.querySelector("small").textContent = "";
+    typeDiv.querySelector("small").style.visibility = "hidden";
+    return true;
+  }
+};
 // validating promotion
 const promotionNoValue = () => {
-  if (!promotionInputYes.checked && !promotionInputNo.checked) return true;
-  else return false;
+  if (!promotionInputYes.checked && !promotionInputNo.checked) {
+    printError(promotionInputYes, "please select one");
+    return true;
+  } else {
+    printSuccess(promotionInputYes);
+    return false;
+  }
 };
 // checking all inputs at once
 const checkInputs = () => {
   checkName(nameInput);
   checkMark(marqueInput);
   checkPrice(priceInput);
+  checkDate(datePrdInput);
   checkType(typeInput);
-  if (promotionNoValue()) printSuccess(promotionInputYes);
-  else printError(promotionInputYes, "please select one");
+  promotionNoValue();
+};
+const clearChecking = (divs) => {
+  divs.forEach((div) => {
+    console.log(div);
+    const divName = div.dataset.name;
+    if (div.classList.contains("success") || div.classList.contains("error")) {
+      div.className = `${divName}_div`;
+    }
+  });
+};
+const checkingEvents = () => {
+  nameInput.addEventListener("blur", (e) => {
+    checkName(nameInput);
+  });
+  marqueInput.addEventListener("blur", (e) => {
+    checkMark(marqueInput);
+  });
+  priceInput.addEventListener("blur", (e) => {
+    checkPrice(priceInput);
+  });
+  typeInput.addEventListener("click", (e) => {
+    checkType(typeInput);
+  });
+  // have to be improved
+  datePrdDiv.addEventListener("click", (e) => {
+    checkDate(datePrdInput);
+  });
 };
