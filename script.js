@@ -95,6 +95,7 @@ submitBtn.addEventListener("click", (e) => {
     type: typeInput.value,
     promotion: document.querySelector('input[name="promotion"]:checked')?.value,
   };
+  // Adding a product
   if (current == "create") {
     if (
       checkName(nameInput) == false ||
@@ -117,7 +118,7 @@ submitBtn.addEventListener("click", (e) => {
       clearChecking(divs);
       // checkingEvents();
     }
-  } else {
+  } /* Updating a product */ else {
     if (
       checkName(nameInput) == false ||
       checkMark(marqueInput) == false ||

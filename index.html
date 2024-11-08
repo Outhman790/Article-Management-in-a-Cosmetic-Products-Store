@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Article Management in a Cosmetic Products Store</title>
     <link rel="stylesheet" href="style.css" />
     <script defer src="validation.js"></script>
     <script defer src="style.js"></script>
@@ -14,12 +14,12 @@
     <section id="form_section" class="container">
       <form class="grid_8">
         <div id="nom_div" data-name="nom">
-          <label for="nom_input" id="nom_label">Nom:</label>
+          <label for="nom_input" id="nom_label">Name:</label>
           <input type="text" name="nom" id="nom_input" maxlength="30" />
           <small></small>
         </div>
         <div id="marque_div" data-name="marque">
-          <label for="marque_input" id="marque_label">Marque:</label>
+          <label for="marque_input" id="marque_label">Brand:</label>
           <input type="text" name="marque" id="marque_input" maxlength="30" />
           <small></small>
         </div>
@@ -29,35 +29,27 @@
           <small></small>
         </div>
         <div id="dateprd_div" data-name="dateprd">
-          <label for="dateprd_input" id="dateprd_label"
-            >Date de production:</label
-          >
+          <label for="dateprd_input" id="dateprd_label">Production date:</label>
           <input type="date" name="dateprd" id="dateprd_input" />
           <small></small>
         </div>
         <div id="type_div" data-name="type">
-          <label for="type_input" id="type_label">type:</label>
+          <label for="type_input" id="type_label">Type:</label>
           <select id="select">
-            <option value="">Please select the Product type</option>
-            <option value="hygiène et toilette" class="type">
-              hygiène et toilette
+            <option value="">Please select the Product Type</option>
+            <option value="hygiene_toiletries" class="type">
+              Hygiene and Toiletries
             </option>
-            <option value="soins esthétiques" class="type">
-              soins esthétiques
+            <option value="aesthetic_care" class="type">Aesthetic Care</option>
+            <option value="sun_care" class="type">Sun Care Products</option>
+            <option value="hand_foot_beauty" class="type">
+              Hand and Foot Beauty
             </option>
-            <option value="produits solaires" class="type">
-              produits solaires
+            <option value="makeup_products" class="type">
+              Makeup Products
             </option>
-            <option value="beauté des mains et des pieds" class="type">
-              beauté des mains et des pieds
-            </option>
-            <option value="produits de maquillage" class="type">
-              produits de maquillage
-            </option>
-            <option value="entretien capillaires" class="type">
-              entretien capillaires
-            </option>
-            <option value="parfums" class="type">parfums</option>
+            <option value="hair_care" class="type">Hair Care</option>
+            <option value="perfumes" class="type">Perfumes</option>
           </select>
           <small></small>
         </div>
@@ -69,14 +61,14 @@
             id="promotion_input_oui"
             value="Oui"
           />
-          <label for="promotion_input_oui">Oui</label>
+          <label for="promotion_input_oui">Yes</label>
           <input
             type="radio"
             name="promotion"
             id="promotion_input_non"
             value="Non"
           />
-          <label for="promotion_input_non">Non</label>
+          <label for="promotion_input_non">No</label>
           <small></small>
         </div>
         <div id="feedback_msg" class="bar erroor"></div>
@@ -86,12 +78,12 @@
         <table class="grid_10">
           <thead>
             <tr>
-              <th>Nom</th>
-              <th>Marque</th>
-              <th>Prix</th>
-              <th>Date de production</th>
-              <th>type</th>
-              <th>promotion</th>
+              <th>Name</th>
+              <th>Brand</th>
+              <th>Price</th>
+              <th>Production Date</th>
+              <th>Type</th>
+              <th>Promotion</th>
               <th colspan="2">update/delete</th>
             </tr>
           </thead>
@@ -100,7 +92,7 @@
       </div>
     </section>
     <section id="modal">
-      <div id="id01" class="modal grid_8">
+      <div id="id01" class="modal">
         <p>Are you sure you want to delete your account?</p>
         <div id="modal_buttons">
           <button onclick="exitModal()" class="cancelbtn">Cancel</button>

@@ -55,12 +55,13 @@ form div {
   padding-bottom: 1.25rem;
   background-color: #f0f2f3;
 }
-/* small {
+small {
   visibility: hidden;
 }
 .error small {
   visibility: visible;
-} */
+  color: red;
+}
 form div label {
   display: inline-block;
   margin-bottom: 0.5rem;
@@ -140,6 +141,16 @@ select {
   border-radius: 3rem;
   background-color: #fefefe;
 }
+.modal {
+  border-radius: 8px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 11;
+  background-color: #388c73;
+  padding: 2rem 3rem;
+}
 #modal_delete {
   display: flex;
   justify-content: center;
@@ -176,6 +187,7 @@ select {
   justify-content: center;
   margin-top: 1.25rem;
 }
+
 .overlay {
   position: absolute;
   top: 0;
