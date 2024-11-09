@@ -46,7 +46,7 @@ A responsive web-based product management system that allows users to create, re
 
 - Name and Brand: Must contain only letters, spaces, hyphens, or apostrophes
 - Price: Must contain only numbers
-- Date: Cannot be empty
+- Date: Cannot be empty and cannot be in the future
 - Type: Must be selected from provided options
 - Promotion: Must select either Yes or No
 
