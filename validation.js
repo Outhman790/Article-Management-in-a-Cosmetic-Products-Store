@@ -40,15 +40,21 @@ const checkPrice = (price) => {
   }
 };
 // validating date
-const checkDate = (date) => {
-  if (!(date.value === "")) {
-    printSuccess(date);
-    return true;
-  } else {
-    printError(date, "Please enter a date");
+const checkDate = (datePrdInput) => {
+  if (datePrdInput.value === "") {
+    printError(datePrdInput, "Please enter a date");
     return false;
   }
+  const inputDate = new Date(datePrdInput.value);
+  const currentDate = new Date();
+  if (inputDate > currentDate) {
+    printError(datePrdInput, "Date cannot be in the future");
+    return false;
+  }
+  printError(datePrdInput, "");
+  return true;
 };
+
 // validating type
 const checkType = (selectInput) => {
   if (selectInput.value === "") {

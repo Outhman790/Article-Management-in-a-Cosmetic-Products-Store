@@ -10,7 +10,6 @@ const promotionInputNo = document.querySelector("#promotion_input_non");
 const tableBody = document.querySelector(".table_Body");
 const modal = document.getElementById("modal");
 const formSection = document.getElementById("form_section");
-// const tableData = document.querySelector(".magazin_list");
 const submitBtn = document.querySelector("#submit_btn");
 const deleteBtn = document.querySelector(".delete_btn");
 const feedbackMsg = document.querySelector("#feedback_msg");
@@ -61,6 +60,7 @@ const showData = () => {
 const deletedData = (i) => {
   formSection.style.display = "none";
   modal.style.display = "flex";
+  // Passing the index of the row to the modal
   delete_Pro.setAttribute("onclick", `deleteData(${i})`);
 };
 const deleteData = (i) => {
@@ -69,6 +69,10 @@ const deleteData = (i) => {
   dataArr.splice(i, 1);
   localStorage.product = JSON.stringify(dataArr);
   showData();
+};
+const exitModal = () => {
+  formSection.style.display = "grid";
+  modal.style.display = "none";
 };
 // edit button
 const update = (i) => {
